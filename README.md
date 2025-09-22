@@ -1,19 +1,23 @@
-# DDNS Cloudflare Bash Script
+# ddcf - A DDNS Cloudflare Bash Script
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/fire1ce/3os.org/tree/master/src)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://mit-license.org/)
 
 ## About
 
-- DDNS Cloudflare Bash Script for most **Linux**, **Unix** distributions and **MacOS**.
-- Choose any source IP address to update **external** or **internal** _(WAN/LAN)_.
-- For multiply lan interfaces like Wifi, Docker Networks and Bridges the script will automatically detects the primary Interface by priority.
+- DDNS Cloudflare Bash Script for most **Linux**(Probably also **Unix** distributions and **MacOS**)
+- Updates Cloudflare DNS with current public ip
+- Can update multiple records(in the same zone)
 - Cloudflare's options proxy and TTL configurable via the config file.
-- Optional Telegram Notifications
+- Notifications through discord webhooks or ntfy.sh
+- ~Choose any source IP address to update **external** or **internal** _(WAN/LAN)_.~
+- ~For multiply lan interfaces like Wifi, Docker Networks and Bridges the script will automatically detects the primary Interface by priority.~
+- ~Optional Telegram Notifications~
 
 ## Requirements
 
 - curl
+- jq
 - Cloudflare [api-token](https://dash.cloudflare.com/profile/api-tokens) with ZONE-DNS-EDIT Permissions
 - DNS Record must be pre created (api-token should only edit dns records)
 
@@ -23,7 +27,7 @@ To create a CloudFlare API token for your DNS zone go to [https://dash.cloudflar
 
 1. Click Create Token
 2. Select Create Custom Token
-3. Provide the token a name, for example, `example.com-dns-zone-readonly`
+3. Provide the token a name, for example, `example.com-dns-zone`
 4. Grant the token the following permissions:
    - Zone - DNS - Edit
 5. Set the zone resources to:
@@ -31,9 +35,6 @@ To create a CloudFlare API token for your DNS zone go to [https://dash.cloudflar
 6. Complete the wizard and use the generated token at the `CLOUDFLARE_API_TOKEN` variable for the container
 
 ## Installation
-
-> [!tip]
-> This [article](https://diyaagrams.com/Cloudflare/DDNS-Cloudflare-Bash-Documentation/DDNS-Cloudflare-bash) has an easier explanation for deploying this script.
 
 You can place the script at any location manually.
 
